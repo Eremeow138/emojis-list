@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-heroes": {
+    "emojis-list": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-heroes",
+            "outputPath": "dist/emojis-list",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -31,6 +31,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/normalize.css/normalize.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -72,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-heroes:build:production"
+              "browserTarget": "emojis-list:build:production"
             },
             "development": {
-              "browserTarget": "angular-heroes:build:development"
+              "browserTarget": "emojis-list:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-heroes:build"
+            "browserTarget": "emojis-list:build"
           }
         },
         "test": {
@@ -116,7 +117,7 @@
       }
     }
   },
-  "defaultProject": "angular-heroes",
+  "defaultProject": "emojis-list",
   "cli": {
     "defaultCollection": "@angular-eslint/schematics"
   }
