@@ -1,0 +1,17 @@
+<table class="table__table">
+  <caption class="table__caption">
+    Emoji table
+  </caption>
+  <tr class="table__row">
+    <th class="table__cell table__cell_head">№</th>
+    <th class="table__cell table__cell_head" data-field="name">Name</th>
+    <th class="table__cell table__cell_head" data-field="link">Link</th>
+    <th class="table__cell table__cell_head" data-field="picture">Picture</th>
+  </tr>
+  <tr class="table__row" *ngFor="let item of emojis$ | async; index as number">
+    <td class="table__cell">{{ number }}</td>
+    <td class="table__cell">{{ item.name }}</td>
+    <td class="table__cell">{{ item.link }}</td>
+    <td class="table__cell"><img src="{{ item.link }}" alt="" style="width: 25px; height: 25px;"></td>
+  </tr>
+</table>
