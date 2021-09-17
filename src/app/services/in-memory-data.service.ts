@@ -19,6 +19,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         name: '+1',
         link: 'https://github.githubassets.com/images/icons/emoji/unicode/1f44d.png?v8',
+        category: 'favorite',
       },
       {
         name: '-1',
@@ -31,6 +32,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         name: '2nd_place_medal',
         link: 'https://github.githubassets.com/images/icons/emoji/unicode/1f948.png?v8',
+        category: 'favorite',
       },
       {
         name: '3rd_place_medal',
