@@ -32,10 +32,17 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   getEmojis(category: string): void {
-    if (category === 'favorite') {
-      this.emojis$ = this.emojisDataService.getFavoriteEmojis();
-    } else {
-      this.emojis$ = this.emojisDataService.getAllEmojis();
+    switch (category) {
+      case 'favorite':
+        this.emojis$ = this.emojisDataService.getFavoriteEmojis();
+        break;
+      case 'removed':
+        this.emojis$ = this.emojisDataService.getRemovedEmojis();
+        break;
+
+      default:
+        this.emojis$ = this.emojisDataService.getAllEmojis();
+        break;
     }
   }
 }

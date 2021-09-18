@@ -7,7 +7,7 @@ import { Emoji } from '../models/emoji';
   providedIn: 'root',
 })
 export class EmojisDataService {
-  private emojisUrl = 'api/emojis';
+  private emojisUrl = 'http://localhost:3000/api/emojis';
 
   constructor(private http: HttpClient) {}
 
@@ -16,6 +16,10 @@ export class EmojisDataService {
   }
 
   getFavoriteEmojis(): Observable<Emoji[]> {
-    return this.http.get<Emoji[]>(`${this.emojisUrl}/?category=favor`);
+    return this.http.get<Emoji[]>(`${this.emojisUrl}/favorite`);
+  }
+
+  getRemovedEmojis(): Observable<Emoji[]> {
+    return this.http.get<Emoji[]>(`${this.emojisUrl}/removed`);
   }
 }
