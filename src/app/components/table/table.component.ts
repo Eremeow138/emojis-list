@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, of, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { Emoji } from 'src/app/models/emoji';
 import { EmojisDataService } from 'src/app/services/emojis-data.service';
 
@@ -10,7 +11,7 @@ import { EmojisDataService } from 'src/app/services/emojis-data.service';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit, OnDestroy {
-  public emojis$: Observable<Emoji[]> = of([]);
+  public emojis: Emoji[] = [];
 
   private activateRouteParamsSubscription: Subscription = new Subscription();
 
@@ -34,15 +35,40 @@ export class TableComponent implements OnInit, OnDestroy {
   getEmojis(category: string): void {
     switch (category) {
       case 'favorite':
-        this.emojis$ = this.emojisDataService.getFavoriteEmojis();
+        this.emojisDataService
+          .getFavoriteEmojis()
+          .pipe(take(1))
+          .subscribe(emojis => {
+            this.emojis = emojis;
+          });
         break;
       case 'removed':
-        this.emojis$ = this.emojisDataService.getRemovedEmojis();
+        this.emojisDataService
+          .getRemovedEmojis()
+          .pipe(take(1))
+          .subscribe(emojis => {
+            this.emojis = emojis;
+          });
         break;
 
       default:
-        this.emojis$ = this.emojisDataService.getAllEmojis();
+        this.emojisDataService
+          .getAllEmojis()
+          .pipe(take(1))
+          .subscribe(emojis => {
+            this.emojis = emojis;
+          });
         break;
     }
+  }
+
+  setToFavorites(emoji: Emoji): void {
+    this.emojis = this.emojis.filter(
+      currentEmoji => currentEmoji.name !== emoji.name,
+    );
+    this.emojisDataService
+      .setToFavoritesEmojis(emoji)
+      .pipe(take(1))
+      .subscribe();
   }
 }
