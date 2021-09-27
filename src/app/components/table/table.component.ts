@@ -13,6 +13,8 @@ import { EmojisDataService } from 'src/app/services/emojis-data.service';
 export class TableComponent implements OnInit, OnDestroy {
   public emojis: Emoji[] = [];
 
+  public category = '';
+
   private activateRouteParamsSubscription: Subscription = new Subscription();
 
   constructor(
@@ -24,6 +26,7 @@ export class TableComponent implements OnInit, OnDestroy {
     this.activateRouteParamsSubscription = this.activateRoute.params.subscribe(
       params => {
         this.getEmojis(params.category);
+        this.category = params.category;
       },
     );
   }

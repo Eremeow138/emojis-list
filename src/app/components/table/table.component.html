@@ -16,7 +16,7 @@
       <img src="{{ item.link }}" alt="" style="width: 25px; height: 25px" />
     </td>
     <td class="table__cell">
-      <button (click)="setToFavorites(item)">Favorite</button>
+      <button *ngIf="category === ''|| category === 'all'" (click)="setToFavorites(item)">Favorite</button>
     </td>
   </tr>
 </table>
